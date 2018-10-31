@@ -121,11 +121,11 @@ function draw() {
 		bg.showBg1();
 		bg.updateBg1();
 		bg.edgeBg1();
-		
+
 		bg.showBgClone();
 		bg.updateBgClone();
 		bg.edgeBgClone();
-		
+
 		bg.showBg();
 		bg.updateBg();
 		bg.edgeBg();
@@ -332,7 +332,7 @@ function draw() {
 		textSize(50);
 		text('Your Traveled: ' + distance + 'm', width / 2, height / 2);
 		text('-------------------------', width / 2, height / 2 + 50);
-		
+
 		fill(100, 70, 255, 200);
 		text('PRESS ENTER 2x', width / 2, height / 2 + 120);
 		pop();
@@ -346,6 +346,7 @@ function keyPressed() {
 			flying.play();
 			player.jump = true;
 			gas--;
+			distance++;
 		}
 		if (pause) {
 			flying.stop();
@@ -357,8 +358,7 @@ function keyPressed() {
 	} else if (keyCode === RETURN) {
 		if (!play) {
 			player.reset();
-			capcake.reset();
-			bug.reset();
+			bg.reset();
 			gas = 100;
 			distance = 0;
 			play = true;
