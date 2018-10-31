@@ -135,9 +135,9 @@ function draw() {
 			i += base.height;
 		}
 
-		// SELAMA MASIH IDUP, JARAK (DISTANCE) BERTAMAH 8m (meter)
-		if (frameCount % 60 == 0) {
-			distance += 8;
+		// SELAMA MASIH IDUP, JARAK (DISTANCE) BERTAMAH (meter)
+		if (frameCount % 30 == 0) {
+			distance++;
 			// GAS JUGA BERKURANG... :D
 			gas--;
 		}
@@ -285,7 +285,7 @@ function draw() {
 		push();
 		noFill();
 		stroke(255);
-		strokeWeight(3);
+		strokeWeight(5);
 		rect(70, 15, 100 * 2, 30, 10);
 		pop();
 
