@@ -1,6 +1,6 @@
 /*
  * Ijo Jetpack 😄
- * remake from Android Jetpack: https://developer.android.com/10/?linkId=58619083 😅
+ * remake from Android Jetpack: https://developer.anplayer.com/10/?linkId=58619083 😅
  * using JavaScript
  * Library: p5.js
  * 
@@ -43,10 +43,14 @@ function preload() {
 	oreoImg = loadImage('assets/img/oreo.png');
 
 	bugImg = loadImage('assets/img/bug.png');
-	bgImg = loadImage('assets/img/bg-small.png');
-	bgNightImg = loadImage('assets/img/bg-small-night.png');
-	bg2Img = loadImage('assets/img/bg2.png');
-	bg2NightImg = loadImage('assets/img/bg2-night.png');
+	bg0 = loadImage('assets/img/jakarta0.png');
+	bg0_night = loadImage('assets/img/jakarta0-night.png');
+	bg0_clone = loadImage('assets/img/jakarta0-clone.png');
+	bg0_night_clone = loadImage('assets/img/jakarta0-night-clone.png');
+	bg1 = loadImage('assets/img/jakarta1.png');
+	bg1_night = loadImage('assets/img/jakarta1-night.png');
+	bg2 = loadImage('assets/img/jakarta2.png');
+	bg2_night = loadImage('assets/img/jakarta2-night.png');
 	base = loadImage('assets/img/base.png');
 	awan = loadImage('assets/img/awan.png');
 
@@ -66,9 +70,9 @@ function setup() {
 	var canvas;
 	canvas = createCanvas(windowWidth, windowHeight);
 	canvas.style('z-index', '-1');
-	theme = color(216, 236, 255);
+	theme = color(244, 250, 255);
 
-	droid = new Droid();
+	player = new Droid();
 	capcake = new Capcake();
 	donut = new Donut();
 	gingerbread = new GingerBread();
@@ -114,6 +118,14 @@ function draw() {
 		bg.updateBg2();
 		bg.edgeBg2();
 
+		bg.showBg1();
+		bg.updateBg1();
+		bg.edgeBg1();
+		
+		bg.showBgClone();
+		bg.updateBgClone();
+		bg.edgeBgClone();
+		
 		bg.showBg();
 		bg.updateBg();
 		bg.edgeBg();
@@ -137,7 +149,7 @@ function draw() {
 			capcakes[i].edges();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
-			if (droid.eat(capcakes[i])) {
+			if (player.eat(capcakes[i])) {
 				sfxEat.play();
 				// JIKA MAKAN, HAPUS MAKANANNYA
 				capcakes.splice(i, 1);
@@ -156,7 +168,7 @@ function draw() {
 			donuts[i].edges();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
-			if (droid.eat(donuts[i])) {
+			if (player.eat(donuts[i])) {
 				sfxEat.play();
 				// JIKA MAKAN, HAPUS MAKANANNYA
 				donuts.splice(i, 1);
@@ -175,7 +187,7 @@ function draw() {
 			gingerbreads[i].edges();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
-			if (droid.eat(gingerbreads[i])) {
+			if (player.eat(gingerbreads[i])) {
 				sfxEat.play();
 				// JIKA MAKAN, HAPUS MAKANANNYA
 				gingerbreads.splice(i, 1);
@@ -194,7 +206,7 @@ function draw() {
 			oreos[i].edges();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
-			if (droid.eat(oreos[i])) {
+			if (player.eat(oreos[i])) {
 				sfxEat.play();
 				// JIKA MAKAN, HAPUS MAKANANNYA
 				oreos.splice(i, 1);
@@ -214,7 +226,7 @@ function draw() {
 			bugs[i].jiggling();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
-			if (droid.hit(bugs[i])) {
+			if (player.hit(bugs[i])) {
 				hitbug.play();
 				// JIKA MAKAN, HAPUS MAKANANNYA
 				bugs.splice(i, 1);
@@ -227,10 +239,10 @@ function draw() {
 		}
 
 		// AKTOR UTAMA :D
-		droid.show();
-		droid.update();
-		droid.jumping();
-		droid.jatohKeTanah();
+		player.show();
+		player.update();
+		player.jumping();
+		player.jatohKeTanah();
 
 		// LOGIC KAPASITAS GAS
 		// JIKA KAPASITAS < 1 MAKA GAME OVER dan PLAY SOUND EFFECT NYA
@@ -296,7 +308,7 @@ function draw() {
 			fill(250, 70, 150);
 			textSize(100);
 			textAlign(CENTER);
-			text("BENTAR", width / 2, height / 2);
+			text("PAUSE", width / 2, height / 2);
 			pop();
 		}
 
@@ -318,11 +330,11 @@ function draw() {
 		text('GAME OVER', width / 2, height / 2 - 100);
 
 		textSize(50);
-		text('Jarak Terbang: ' + distance + 'm', width / 2, height / 2);
+		text('Your Traveled: ' + distance + 'm', width / 2, height / 2);
 		text('-------------------------', width / 2, height / 2 + 50);
 		
 		fill(100, 70, 255, 200);
-		text('TEKAN ENTER 2x', width / 2, height / 2 + 120);
+		text('PRESS ENTER 2x', width / 2, height / 2 + 120);
 		pop();
 		noLoop();
 	}
@@ -332,7 +344,7 @@ function keyPressed() {
 	if (key == ' ') {
 		if (play) {
 			flying.play();
-			droid.jump = true;
+			player.jump = true;
 			gas--;
 		}
 		if (pause) {
@@ -344,7 +356,7 @@ function keyPressed() {
 		noLoop();
 	} else if (keyCode === RETURN) {
 		if (!play) {
-			droid.reset();
+			player.reset();
 			capcake.reset();
 			bug.reset();
 			gas = 100;
@@ -358,5 +370,5 @@ function keyPressed() {
 }
 
 function keyReleased() {
-	droid.jump = false;
+	player.jump = false;
 }
