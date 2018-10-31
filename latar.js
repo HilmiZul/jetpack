@@ -2,18 +2,23 @@ class Latar {
   constructor() {
     this.rSun = 150;
     this.posSun = createVector(width / 2 + this.rSun, 0 + this.rSun);
-    this.velSun = random(0.3, 0.4);
+    this.velSun = random(0.1, 0.3);
     this.sunColor = color(255, 255, 50, 170);
     this.day = 'day';
 
     this.posAwan = createVector(0, this.posSun.y);
     this.velAwan = 0.1;
 
-    this.velBg = 1.5;
-    this.bg = createVector(0, height - bgImg.height);
+    this.velBg = 0.7;
+    this.bg = createVector(0, height - bg0.height);
+    this.velBgClone = 0.7;
+    this.bgClone = createVector(0 + bg0.width, height - bg0.height);
 
-    this.velBg2 = 0.5;
-    this.bg2 = createVector(0 + bgImg.width / 2, height - bg2Img.height);
+    this.velBg1 = 0.3;
+    this.bg1 = createVector(0, height - bg1.height);
+
+    this.velBg2 = 0.3;
+    this.bg2 = createVector(0 + bg1.width, height - bg2.height);
   }
 
   showSun() {
@@ -35,7 +40,7 @@ class Latar {
         this.sunColor = color(255, 250);
       } else {
         this.day = 'day';
-        theme = color(216, 236, 255);
+        theme = color(244, 250, 255);
         this.sunColor = color(255, 255, 50, 170);
       }
     }
@@ -57,9 +62,9 @@ class Latar {
 
   showBg() {
     if (this.day == 'day') {
-      image(bgImg, this.bg.x, this.bg.y);
+      image(bg0, this.bg.x, this.bg.y);
     } else {
-      image(bgNightImg, this.bg.x, this.bg.y);
+      image(bg0_night, this.bg.x, this.bg.y);
     }
   }
 
@@ -68,18 +73,55 @@ class Latar {
   }
 
   edgeBg() {
-    if (this.bg.x < 0 - bgImg.width) {
+    if (this.bg.x < 0 - bg0.width) {
       this.bg.x = width;
+    }
+  }
+
+  showBgClone() {
+    if (this.day == 'day') {
+      image(bg0_clone, this.bgClone.x, this.bgClone.y);
+    } else {
+      image(bg0_night_clone, this.bgClone.x, this.bgClone.y);
+    }
+  }
+
+  updateBgClone() {
+    this.bgClone.x -= this.velBgClone;
+  }
+
+  edgeBgClone() {
+    if (this.bgClone.x < 0 - bg0_clone.width) {
+      this.bgClone.x = this.bg.x + bg0.width;
+    }
+  }
+
+  showBg1() {
+    if (this.day == 'day') {
+      image(bg1, this.bg1.x, this.bg1.y);
+    } else {
+      image(bg1_night, this.bg1.x, this.bg1.y);
+    }
+
+  }
+
+  updateBg1() {
+    this.bg1.x -= this.velBg1;
+  }
+
+  edgeBg1() {
+    if (this.bg1.x < 0 - bg1.width) {
+      this.bg1.x = this.bg2.x + bg2.width;
     }
   }
 
   showBg2() {
     if (this.day == 'day') {
-      image(bg2Img, this.bg2.x, this.bg2.y);  
+      image(bg2, this.bg2.x, this.bg2.y);
     } else {
-      image(bg2NightImg, this.bg2.x, this.bg2.y);
+      image(bg2_night, this.bg2.x, this.bg2.y);
     }
-    
+
   }
 
   updateBg2() {
@@ -87,8 +129,8 @@ class Latar {
   }
 
   edgeBg2() {
-    if (this.bg2.x < 0 - bg2Img.width) {
-      this.bg2.x = width;
+    if (this.bg2.x < 0 - bg2.width) {
+      this.bg2.x = this.bg1.x + bg1.width;
     }
   }
 }
