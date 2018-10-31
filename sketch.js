@@ -72,7 +72,7 @@ function setup() {
 	canvas.style('z-index', '-1');
 	theme = color(244, 250, 255);
 
-	player = new Droid();
+	player = new Player();
 	capcake = new Capcake();
 	donut = new Donut();
 	gingerbread = new GingerBread();

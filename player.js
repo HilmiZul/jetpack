@@ -1,4 +1,4 @@
-class Droid {
+class Player {
   constructor() {
     this.reset();
   }
