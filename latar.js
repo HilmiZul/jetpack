@@ -74,7 +74,7 @@ class Latar {
 
   edgeBg() {
     if (this.bg.x < 0 - bg0.width) {
-      this.bg.x = width;
+      this.bg.x = this.bgClone.x + bg0_clone.width;
     }
   }
 
