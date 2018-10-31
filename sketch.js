@@ -358,7 +358,6 @@ function keyPressed() {
 	} else if (keyCode === RETURN) {
 		if (!play) {
 			player.reset();
-			bg.reset();
 			gas = 100;
 			distance = 0;
 			play = true;
