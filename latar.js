@@ -1,5 +1,9 @@
 class Latar {
   constructor() {
+    this.reset();
+  }
+
+  reset() {
     this.rSun = 150;
     this.posSun = createVector(width / 2 + this.rSun, 0 + this.rSun);
     this.velSun = random(0.1, 0.3);
