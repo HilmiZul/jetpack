@@ -114,13 +114,13 @@ function draw() {
 		bg.updateAwan();
 		bg.edgeAwan();
 
-		bg.showBg2();
-		bg.updateBg2();
-		bg.edgeBg2();
+		// bg.showBg2();
+		// bg.updateBg2();
+		// bg.edgeBg2();
 
-		bg.showBg1();
-		bg.updateBg1();
-		bg.edgeBg1();
+		// bg.showBg1();
+		// bg.updateBg1();
+		// bg.edgeBg1();
 
 		bg.showBgClone();
 		bg.updateBgClone();
@@ -316,7 +316,7 @@ function draw() {
 		gameover.play();
 		push();
 		background(250, 50, 100, 90);
-		fill(250, 70, 150, 100);
+		fill(250, 70, 150);
 		stroke(255);
 		strokeWeight(5);
 		rectMode(CENTER);
