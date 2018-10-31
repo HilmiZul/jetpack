@@ -330,7 +330,7 @@ function draw() {
 		text('GAME OVER', width / 2, height / 2 - 100);
 
 		textSize(50);
-		text('Your Traveled: ' + distance + 'm', width / 2, height / 2);
+		text('You Travelled: ' + distance + 'm', width / 2, height / 2);
 		text('-------------------------', width / 2, height / 2 + 50);
 
 		fill(100, 70, 255, 200);
