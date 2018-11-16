@@ -6,7 +6,7 @@ class Bugs {
   reset() {
     this.r = random(30, 90);
     this.pos = createVector(random(width + this.r, width * 2), random(0, height - base.height));
-    this.total = 5;
+    this.total = 1;
     this.vel = random(3, 9);
   }
 
@@ -26,7 +26,7 @@ class Bugs {
 
   edges() {
     if (this.pos.x < 0 - bugImg.width) {
-      this.reset();
+      return true;
     }
   }
 
