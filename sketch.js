@@ -218,11 +218,17 @@ function draw() {
 			}
 		}
 
+		if (frameCount % 50 == 0) {
+			bugs.push(new Bugs());
+		}
+
 		// NGAMBIL BUGS DARI ARRAY
 		for (let i = 0; i < bugs.length; i++) {
 			bugs[i].show();
 			bugs[i].update();
-			bugs[i].edges();
+			if (bugs[i].edges()) {
+				bugs.splice(i, 1);
+			}
 			bugs[i].jiggling();
 
 			// CEK APAKAH SI ROBOT IJO MAKAN BISKUIT?
