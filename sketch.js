@@ -218,7 +218,7 @@ function draw() {
 			}
 		}
 
-		if (frameCount % 50 == 0) {
+		if (frameCount % 160 == 0) {
 			bugs.push(new Bugs());
 		}
 
