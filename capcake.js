@@ -6,7 +6,7 @@ class Capcake {
   reset() {
     this.r = random(50, 90);
     this.pos = createVector(random(width + this.r, width * 2), random(0, height - random(30, 70) - base.height));
-    this.vel = random(5.5, 10);
+    this.vel = random(4, 5);
     this.total = 1;
   }
 
